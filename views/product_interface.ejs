@@ -1,0 +1,122 @@
+
+<html>
+    <head>
+        <link rel="stylesheet" href="/stylesheets/project.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+<script src="/javascripts/gift_data.js"></script>
+    </head>
+    <div class = "maincontainer">
+<div class="box  form-card">
+    <div class="container p-0">
+    <div class="row">
+        <div class="col-md-12">
+            <div style="display:flex;flex-direction:center;width:100%; justify-content:space-between;padding:5px;border-radius:20px;align-items:center; background:#d81b60;">
+            <div style="display:flex;align-items:center; width:100%";>
+        <span><img src="/images/gift.png" style="width : 40px; height : 40px;"></span>
+        <span class="textstyle">Gifteria</span>
+        </div>
+        <div style="background-color: #fff0f5;">
+        <span><img src="/images/to-do-list.png" style="width : 40px; height : 40px;"></span>
+        </div>
+        </div>
+        </div> 
+    </div>
+<div class="row">
+    <div class="col-md-6" style="margin-top:20px">
+     <div class="form-floating">
+ <select class="form-select" aria-label="Select Category" name="categoryid"  id="categoryid" style="border-radius:15px;">
+  <option selected>Select Category</option>
+</select>
+    <label for="category">Category</label>
+    </div>
+</div>
+<div class="col-md-6" style="margin-top:20px">
+     <div class="form-floating">
+ <select class="form-select" aria-label="Select Subcategory" name="subcategoryid"  id="subcategoryid" style="border-radius:15px;">
+  <option selected>Select Subcategory</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+</select>
+    <label for="subcategory">Subcategory</label>
+    </div>
+</div>
+</div> 
+<div class="row">
+    <div class="col-md-12" style="margin-top:10px";>
+     <div class="form-floating"> 
+        <input class="form-control" type="text" placeholder=" " name="productname" style="border-radius:15px;"/>
+            <label for="productname">Enter Product Name</label>
+    </div>
+        </div>
+    </div>
+
+    <div class="row">
+    <div class="col-md-6" style="margin-top:10px">
+     <div class="form-floating"> 
+        <input class="form-control" type="text" placeholder=" " name="productrate" style="border-radius:15px;"/>
+         <label for="productrate">Enter Product Rate</label>
+        </div>
+        </div>
+
+        <div class="col-md-6" style="margin-top:10px">
+     <div class="form-floating"> 
+        <input class="form-control" type="text" placeholder=" " name="productoffer" style="border-radius:15px;"/>
+         <label for="productoffer">Enter Product Offer</label>
+        </div>
+        </div>
+    </div>
+
+    <div class="row">
+    <div class="col-md-6" style="margin-top:10px">
+     <div class="form-floating"> 
+        <input class="form-control" type="text" placeholder=" " name="productstock" style="border-radius:15px;"/>
+         <label for="productstock">Enter Product Stock</label>
+        </div>
+        </div>
+
+        <div class="col-md-6" style="margin-top:10px">
+     <div class="form-floating"> 
+        <input class="form-control" type="text" placeholder=" " name="productweight" style="border-radius:15px;"/>
+         <label for="productweight">Enter Product Weight</label>
+        </div>
+        </div>
+    </div>
+    <!-- <div class="row">
+    <div class="col-md-6" style="margin-top:15px">
+     <div class="form-floating"> 
+        <input class="form-control" type="file" placeholder=" " id="formfile" style="border-radius:15px; border-color:#d81b60;
+    box-shadow:0 0 10px rgba(216,27,96,0.3)"/>
+         <label for="formfile">Upload Product Image</label>
+        </div>
+        </div>
+
+        <div class="col-md-6" style="margin-top:15px; display:flex; align-items:center; justify-content:center;">          
+                <img src="/images/camera.png" style="width : 40px; height : 40px;"></img>
+        </div>
+       </div> -->
+       <div class="row">
+        <div class="col-md-6" style="margin-top:15px">
+      <input class="btn btn-primary" type="submit" value="Submit" style="border-radius:15px; width:100%; background-color:#d81b60; border-color:#d81b60;"/>
+        </div>
+        
+
+        <div class="col-md-6" style="margin-top:15px">
+    <input class="btn btn-secondary" type="reset" value="Reset" style="border-radius:15px; width:100%; background-color:#d81b60; border-color:#d81b60;"/>
+        
+        </div>
+    </div>
+</div>
+</div>
+
+        </div>
+    </div>
+
+</div>     
+</html>
