@@ -11,6 +11,7 @@
 <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
 <script src="/javascripts/gift_data.js"></script>
     </head>
+    <form action="/product/submit_product" method="post">
     <div class = "maincontainer">
 <div class="box  form-card">
     <div class="container p-0">
@@ -40,10 +41,7 @@
      <div class="form-floating">
  <select class="form-select" aria-label="Select Subcategory" name="subcategoryid"  id="subcategoryid" style="border-radius:15px;">
   <option selected>Select Subcategory</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
-</select>
+    </select>
     <label for="subcategory">Subcategory</label>
     </div>
 </div>
@@ -112,11 +110,19 @@
         
         </div>
     </div>
+
+     <div class="row">
+        <div class="col-md-12" style="margin-top:15px">
+            <%=message %>
+      
+        </div>
+        </div>
 </div>
 </div>
 
         </div>
     </div>
 
-</div>     
+</div>   
+</form>  
 </html>
