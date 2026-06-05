@@ -1,0 +1,62 @@
+CREATE DATABASE gift;
+USE gift;
+
+
+CREATE TABLE category(
+    categoryid INT PRIMARY KEY AUTO_INCREMENT,
+    categoryname VARCHAR(45) 
+    );
+
+    INSERT INTO category(categoryid, categoryname)
+VALUES
+(1,'Electronics'),
+(2,'Toys'),
+(3,'Frames'),
+(4,'Idol');
+
+CREATE TABLE subcategory(
+    subcategoryid INT PRIMARY KEY,
+    categoryid INT,
+    subcategoryname VARCHAR(45),
+    FOREIGN KEY(categoryid) REFERENCES category(categoryid)
+);
+
+INSERT INTO subcategory(subcategoryid, categoryid, subcategoryname)
+VALUES
+(100,1,'Watches'),
+(101,1,'Ps5'),
+(102,1,'Headphones'),
+(103,1,'Earpods'),
+(104,2,'Bluetooth Speaker'),
+(105,2,'Barbie Doll'),
+(106,3,'Robot'),
+(107,1,'Phones');
+
+
+CREATE TABLE product(
+    productid INT PRIMARY KEY AUTO_INCREMENT,
+    categoryid INT,
+    subcategoryid INT,
+    productname VARCHAR(45),
+    productrate VARCHAR(45),
+    productoffer VARCHAR(45),
+    stock VARCHAR(45),
+    weight VARCHAR(45),
+    productpicture TEXT,
+
+    FOREIGN KEY(categoryid) REFERENCES category(categoryid),
+    FOREIGN KEY(subcategoryid) REFERENCES subcategory(subcategoryid)
+);
+
+INSERT INTO product
+(productid,categoryid,subcategoryid,productname,productrate,productoffer,stock,weight,productpicture)
+VALUES
+(1,1,101,'car',56,'6y','ef','gh',NULL),
+
+(2,2,105,'car',56,'79','vn','bhy',NULL),
+
+(3,2,105,'Barbie Dream House',40000,'10','40','1kg',NULL),
+
+(4,2,105,'Barbie Dream House',40000,'10','40','1kg',NULL),
+
+(5,1,107,'iPhone 15',80000,'15','50','171g',NULL);
