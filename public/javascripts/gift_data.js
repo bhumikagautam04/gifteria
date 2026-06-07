@@ -18,4 +18,10 @@ $(document).ready(function(){
       })
     })
   })
+
+  $("#picture").change(function(e){
+ 
+    $("#p_image").attr('src',URL.createObjectURL(e.target.files[0]));
   })
+
+})
