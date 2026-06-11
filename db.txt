@@ -31,6 +31,22 @@ VALUES
 (105,2,'Barbie Doll'),
 (106,3,'Robot'),
 (107,1,'Phones');
+(108,1,'Laptop'),
+(109,1,'Smart Watch'),
+(110,1,'Tablet'),
+(111,1,'Camera'),
+(112,2,'Toy Car'),
+(113,2,'Teddy Bear'),
+(114,2,'Building Blocks'),
+(115,2,'Puzzle Game'),
+(116,3,'Photo Frame'),
+(117,3,'Couple Frame'),
+(118,3,'Family Frame'),
+(119,3,'Wall Frame'),
+(120,4,'Ganesh Idol'),
+(121,4,'Krishna Idol'),
+(122,4,'Buddha Idol'),
+(123,4,'Shiv Idol');
 
 
 CREATE TABLE product(

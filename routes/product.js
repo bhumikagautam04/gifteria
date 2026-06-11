@@ -6,9 +6,7 @@ var upload=require('./multer');
 router.get('/product_interface', function(req,res,next){
     res.render('product_interface', {message:''});
 })
-router.get('/Display_all_products', function(req,res,next){
-    res.render('DisplayALLProducts');
-})
+
 
 router.get('/fetch_all_category', function(req,res){
 
@@ -59,11 +57,11 @@ router.get('/fetch_all_category', function(req,res){
     pool.query("select * from products", function(err,result){
         if(err)
         {
-            res.json({status:false, message:err});
+            res.render('DisplayAllProducts', {status:false,data:[]});
         }
         else
         {
-            res.json({status:true, data:result});
+            res.render('DisplayAllProducts', {status:true,data:result});
         }
         })
     })
