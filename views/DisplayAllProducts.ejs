@@ -10,9 +10,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
 <script src="/javascripts/gift_data.js"></script>
-    </head>
-     <div class = "maincontainer">
-    <div class="box  form-card">
+     </head>
+     <div class ="maincontainer">
+    <div class="box_display  form-card2">
     <div class="container p-0">
     <div class="row">
         <div class="col-md-12">
@@ -21,9 +21,11 @@
         <span><img src="/images/gift.png" style="width : 40px; height : 40px;"></span>
         <span class="textstyle">Gifteria</span>
         </div>
-        <div style="background-color: #fff0f5;">
-        <span><img src="/images/to-do-list.png" style="width : 40px; height : 40px;"></span>
-        </div>
+        <div >
+        <a href="/product/product_interface">
+        <span><img src="/images/add-to-cart (1).png" style="width : 40px; height : 40px; cursor:product;"/></span>
+        </a>
+    </div>
         </div>
         </div> 
     </div>
@@ -32,29 +34,34 @@
     <table class="table table-dark table-hover">
   <thead>
     <tr>
-
       <th scope="col">Product ID</th>
       <th scope="col">Product Name</th>
-      <th scope="col">Category</th>
-      <th scope="col">SubCategory</th>
+      <th scope="col">Category Name</th>
+      <th scope="col">SubCategory Name</th>
       <th scope="col">Rate/ Offer</th>
-      <th scope="col">Weight</th>
+       <th scope="col">Weight</th>
       <th scope="col">Stock</th>
       <th scope="col">Picture</th>
+        <th scope="col">Update</th>
     </tr>
   </thead>
   <tbody>
-   <% data.map((item, index) => { %>
+   <% data.map((item) => { %>
 <tr>
     
     <td><%= item.productid %></td>
      <td><%= item.productname %></td>
-    <td><%= item.categoryid %></td>
-    <td><%= item.subcategoryid %></td>
-    <td><s><%= item.productrate %></s><br><span style="color:rgba(32, 167, 204, 0.678);"><%= item.productoffer %></td></span>
+    <td><%= item.categoryname %></td>
+    <td><%= item.subcategoryname %></td>
+    <td><s><%= item.productrate %></s><br><span style="color:#d81b60;"><%= item.productoffer %></td></span>
     <td><%= item.weight %></td>
     <td><%= item.stock %></td>
-    <td><%= item.productpicture %></td>
+    <td>
+      <a href="/product/show_picture/<%= item.productid %>/<%= item.productname %>/<%= item.productpicture %>">
+        <img src="/images/<%= item.productpicture %>" style="width:40px;height:40px;border-radius:5px;"/>
+      </a>
+    </td>
+    <td style="cursor:pointer;"><a href="/product/edit_delete_view/<%= item.productid %>" style="color:#d81b60;">Edit/Delete</a></td>
 </tr>
  <% }) %>
   </tbody>
