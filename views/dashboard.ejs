@@ -14,11 +14,11 @@
     <div class ="dashboardmaincontainer">
         <div class="appbar">
             <div style="display:flex;flex-direction:center;width:100%; justify-content:space-between;align-items:center;">
-            <div style="width:200px;display:flex;justify-content:space-between;">
+            <div style="width:150px;display:flex;justify-content:space-between;">
                 <div>
                 <img src="/images/bag.png" width="60px"/>
                 </div>
-            <div class="textstyle4">
+            <div class="textstyle4" style="margin-top:7px;">
             Gifteria
         </div>
         </div>
@@ -31,45 +31,52 @@
     </div>
           <div class="row">
         <div class="col-md-2">
-       <div class="dashboardbox textstyle3" style="padding:15px;">
-        <div>
-            <img src="/images/sections.png" width="30px" height="30px"/>
+       <div class="dashboardbox textstyle6" style="padding:15px;">
+        <div class="sidebar-link" onmouseover="this.style.backgroundColor='#c2185b';" onmouseout="this.style.backgroundColor='transparent';">
+            <img src="/images/dashboard.png" width="35px" height="35px"/>
             <span>
                 Dashboard
             </span>
         </div>
-        <div style="width:100%; height:2px;margin:2px;background-color:black ;">
-
-        </div> <div>
-            <img src="/images/sections.png" width="30px" height="30px"/>
+        <div class="dashboard-divider"></div>
+          <a href="/product/product_interface" style="text-decoration:none; display:block; color:inherit;" target="mw">
+            <div class="sidebar-link" onmouseover="this.style.backgroundColor='#c2185b';" onmouseout="this.style.backgroundColor='transparent';">
+                <img src="/images/add-cart.png" width="35px" height="35px"/>
+                <span>
+                    New Products
+                </span>
+            </div>
+          </a>
+          <a href="/product/fetch_all_products" style="text-decoration:none; display:block; color:inherit;" target="mw">
+         <div class="sidebar-link" onmouseover="this.style.backgroundColor='#c2185b';" onmouseout="this.style.backgroundColor='transparent';">
+            <img src="/images/check.png" width="35px" height="35px"/>
             <span>
-                Dashboard
+                Product List
             </span>
         </div>
-        <div style="width:100%; height:2px;margin:2px;background-color:black ;">
-
-        </div>
-         <div>
-            <img src="/images/sections.png" width="30px" height="30px"/>
+    </a>
+    <a href="/product/search_by_id" style="text-decoration:none; display:block; color:inherit;" target="mw">
+         <div class="sidebar-link" onmouseover="this.style.backgroundColor='#c2185b';" onmouseout="this.style.backgroundColor='transparent';">
+            <img src="/images/loupe.png" width="35px" height="35px"/>
             <span>
-                Dashboard
+                Search Product
             </span>
         </div>
-        <div style="width:100%; height:2px;margin:2px;background-color:black ;">
-
-        </div>
-         <div>
-            <img src="/images/sections.png" width="30px" height="30px"/>
+    </a>
+    <a href="/admin/login_page" style="text-decoration:none; display:block; color:inherit;" target="mw">
+         <div class="sidebar-link" onmouseover="this.style.backgroundColor='#c2185b';" onmouseout="this.style.backgroundColor='transparent';">
+            <img src="/images/exit-door.png" width="35px" height="35px"/>
             <span>
-                Dashboard
+                Logout
             </span>
         </div>
-        <div style="width:100%; height:2px;margin:2px;background-color:black ;">
-
-        </div>
-
+    </a>
+    
        </div>
 
+        </div>
+        <div class="col-md-10" style="padding:13px;">
+            <iframe frameborder="0" width="100%" height="600" name="mw" style="border:1px solid #ccc; border-radius:0px; background:white;"></iframe>
         </div>
     </div>
         </div>

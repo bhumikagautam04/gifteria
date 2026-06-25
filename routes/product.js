@@ -38,6 +38,9 @@ router.get('/fetch_all_category', function(req,res){
     })
 
      router.post('/submit_product' ,upload.single('picture'), function(req,res){
+    if (!req.file) {
+        return res.render('product_interface', { message: 'No picture uploaded' });
+    }
 
     pool.query("insert into products (categoryid, subcategoryid, productname, productrate, productoffer, stock, weight, productpicture) values( ?, ?, ?, ?, ?, ?, ?, ?)", [ req.body.categoryid, req.body.subcategoryid, req.body.productname, req.body.productrate, req.body.productoffer, req.body.productstock, req.body.productweight, req.file.filename], function(err,result){
         if(err)
@@ -81,19 +84,8 @@ router.get('/fetch_all_category', function(req,res){
     })
     
     
-router.get('/login_page', function(req,res,next){
-    res.render('login_page');
-})
 
-router.post("/chk_login",function(req,res)
-    {
-        var {emailid,pwd}=req.body
-        if (emailid=="bhumikagautam751@gmail.com" && pwd=="12345") 
-            { res.render('product_interface', {message:''}); 
-    }
-            
-   
-    });
+
 
     router.post('/product_edit_delete' , function(req,res){
         var btn_value=req.body.btn
@@ -130,6 +122,10 @@ router.post("/chk_login",function(req,res)
     })
 
     router.post("/final_picture_edit",upload.single('picture'),function(req,res){
+        if (!req.file) {
+            return res.redirect('/product/fetch_all_products');
+        }
+
         pool.query("update products set productpicture=? where productid=?",[req.file.filename,req.body.productid],function(err,result){
         
             if(err)
@@ -141,10 +137,28 @@ router.post("/chk_login",function(req,res)
    }
         })
     })
- 
+ router.get("/search_by_id",function(req,res){
+  res.render('search_by_id', { message: '' });
+})
 
- 
+ router.post('/fetch_by_id', function(req,res){
 
+    pool.query("select p.*,c.*,s.*  from products p,category c, subcategory s where p.subcategoryid=s.subcategoryid and p.categoryid=c.categoryid and p.productid =?",[req.body.productid], function(err,result){
+        if(err)
+        {
+            res.render('edit_delete', {status:false,data:[],message:'server error'});
+        }
+        else
+        {
+            if(result.length==1)
+            {
+                res.render('edit_delete', {status:true,data:result[0],message:" "});
+            }
+            else{
+                res.render('search_by_id',{message:'ProductID does not exist', productid:req.body.productid})
+            }
+        }
+    })
+})
 
-
-module.exports = router;
+module.exports=router;
