@@ -5,9 +5,6 @@ var upload=require('./multer');
 var {LocalStorage} =require('node-localstorage');
 var localStorage = new LocalStorage('./scratch');
 const {check_user} = require('./checkuser');
-var pool=require('./pool');
-var upload=require('./multer');
-
 
 /* GET home page. */
 router.get('/dashboard', function(req, res, next) {
@@ -30,11 +27,6 @@ router.get('/login_page', function(req,res,next){
   res.render('login_page');
  }
 });
-
-router.get('/login_page', function(req,res,next){
-    res.render('login_page',{message:" "});
-})
-
 
 router.post("/chk_login",function(req,res)
     {

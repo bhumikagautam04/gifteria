@@ -124,15 +124,9 @@ router.get('/fetch_all_category', function(req,res){
         }
     );
 });
-    
-    
-router.get('/login_page', function(req,res,next){
-    res.render('login_page');
-})
 
 
-
-    router.post('/product_edit_delete' , function(req,res){
+   router.post('/product_edit_delete' , function(req,res){
 
        router.post('/product_edit_delete' , function(req,res){
 
@@ -186,6 +180,35 @@ router.get('/login_page', function(req,res,next){
    }
         })
     })
+     router.get("/search_by_id",function(req,res){
+        var user = check_user(localStorage);
+     if(user){
+      res.render('search_by_id',{data:user,message:" "});
+     }
+     else{
+      res.render('login_page',{message:''});
+     }
+})
+
+ router.post('/fetch_by_id', function(req,res){
+
+    pool.query("select p.*,c.*,s.*  from products p,category c, subcategory s where p.subcategoryid=s.subcategoryid and p.categoryid=c.categoryid and p.productid =?",[req.body.productid], function(err,result){
+        if(err)
+        {
+            res.render('edit_delete', {status:false,data:[],message:'server error'});
+        }
+        else
+        {
+            if(result.length==1)
+            {
+                res.render('edit_delete', {status:true,data:result[0],message:" "});
+            }
+            else{
+                res.render('search_by_id',{message:'ProductID does not exist', productid:req.body.productid})
+            }
+        }
+    })
+})
  
 
  
