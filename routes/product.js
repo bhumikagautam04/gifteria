@@ -49,6 +49,9 @@ router.get('/fetch_all_category', function(req,res){
     })
 
      router.post('/submit_product' ,upload.single('picture'), function(req,res){
+    if (!req.file) {
+        return res.render('product_interface', { message: 'No picture uploaded' });
+    }
 
     pool.query("insert into products (categoryid, subcategoryid, productname, productrate, productoffer, stock, weight, productpicture) values( ?, ?, ?, ?, ?, ?, ?, ?)", [ req.body.categoryid, req.body.subcategoryid, req.body.productname, req.body.productrate, req.body.productoffer, req.body.productstock, req.body.productweight, req.file.filename], function(err,result){
         if(err)
@@ -123,25 +126,16 @@ router.get('/fetch_all_category', function(req,res){
 });
     
     
-<<<<<<< Updated upstream
 router.get('/login_page', function(req,res,next){
     res.render('login_page');
 })
 
-router.post("/chk_login",function(req,res)
-    {
-        var {emailid,pwd}=req.body
-        if (emailid=="bhumikagautam751@gmail.com" && pwd=="12345") 
-            { res.render('product_interface', {message:''}); 
-    }
-            
-   
-    });
+
 
     router.post('/product_edit_delete' , function(req,res){
-=======
+
        router.post('/product_edit_delete' , function(req,res){
->>>>>>> Stashed changes
+
         var btn_value=req.body.btn
         if(btn_value=="Edit")
         {
@@ -171,11 +165,16 @@ router.post("/chk_login",function(req,res)
             })
         }
     })
+})
     router.get("/show_picture/:id/:name/:picture", function(req,res){
         res.render("show_picture_for_edit", { data: req.params })
     })
 
     router.post("/final_picture_edit",upload.single('picture'),function(req,res){
+        if (!req.file) {
+            return res.redirect('/product/fetch_all_products');
+        }
+
         pool.query("update products set productpicture=? where productid=?",[req.file.filename,req.body.productid],function(err,result){
         
             if(err)
@@ -187,19 +186,7 @@ router.post("/chk_login",function(req,res)
    }
         })
     })
-<<<<<<< Updated upstream
  
-=======
- router.get("/search_by_id",function(req,res){
-      var user = check_user(localStorage);
-     if(user){
-      res.render('search_by_id',{data:user,message:" "});
-     }
-     else{
-      res.render('login_page',{message:''});
-     }
-})
->>>>>>> Stashed changes
 
  
 
