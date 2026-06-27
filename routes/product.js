@@ -2,9 +2,20 @@ var express = require('express');
 var pool=require('./pool');
 var router = express.Router();
 var upload=require('./multer');
+var {LocalStorage} =require('node-localstorage');
+var localStorage = new LocalStorage('./scratch');
+const {check_user} = require('./checkuser');
+
 
 router.get('/product_interface', function(req,res,next){
-    res.render('product_interface', {message:''});
+     var user = check_user(localStorage);
+     if(user){
+      res.render('product_interface',{data:user,message:" "});
+     }
+     else{
+      res.render('login_page',{message:''});
+     }
+    
 })
 
 
@@ -52,35 +63,67 @@ router.get('/fetch_all_category', function(req,res){
         }
     })
     })
-    router.get('/fetch_all_products', function(req,res){
+    router.get('/fetch_all_products', function(req, res) {
 
-    pool.query("select p.*,c.*,s.*  from products p,category c, subcategory s where p.subcategoryid=s.subcategoryid and p.categoryid=c.categoryid", function(err,result){
-        if(err)
-        {
-            res.render('DisplayAllProducts', {status:false,data:[]});
-        }
-        else
-        {
-            res.render('DisplayAllProducts', {status:true,data:result});
-        }
-        })
-    })
-    
-     router.get('/edit_delete_view/:productid', function(req,res){
+    var user = check_user(localStorage);
 
-    pool.query("select p.*,c.*,s.*  from products p,category c, subcategory s where p.subcategoryid=s.subcategoryid and p.categoryid=c.categoryid and p.productid =?",[req.params.productid], function(err,result){
-        if(err)
-        {
-            res.render('edit_delete', {status:false,data:[]});
+    if (!user) {
+        return res.render('login_page', { message: '' });
+    }
+
+    pool.query(
+        "select p.*,c.*,s.* from products p,category c, subcategory s where p.subcategoryid=s.subcategoryid and p.categoryid=c.categoryid",
+        function(err, result) {
+
+            if (err) {
+                return res.render('DisplayAllProducts', {
+                    status: false,
+                    data: [],
+                    user: user
+                });
+            } else {
+                return res.render('DisplayAllProducts', {
+                    status: true,
+                    data: result,
+                    user: user
+                });
+            }
         }
-        else
-        {
-            res.render('edit_delete', {status:true,data:result[0]});
+    );
+}); 
+    
+     router.get('/edit_delete_view/:productid', function(req, res) {
+
+    var user = check_user(localStorage);
+
+    if (!user) {
+        return res.render('login_page', { message: '' });
+    }
+
+    pool.query(
+        "select p.*,c.*,s.* from products p,category c, subcategory s where p.subcategoryid=s.subcategoryid and p.categoryid=c.categoryid and p.productid = ?",
+        [req.params.productid],
+        function(err, result) {
+
+            if (err) {
+                return res.render('edit_delete', {
+                    status: false,
+                    data: [],
+                    user: user
+                });
+            } else {
+                return res.render('edit_delete', {
+                    status: true,
+                    data: result[0],
+                    user: user
+                });
+            }
         }
-        })
-    })
+    );
+});
     
     
+<<<<<<< Updated upstream
 router.get('/login_page', function(req,res,next){
     res.render('login_page');
 })
@@ -96,6 +139,9 @@ router.post("/chk_login",function(req,res)
     });
 
     router.post('/product_edit_delete' , function(req,res){
+=======
+       router.post('/product_edit_delete' , function(req,res){
+>>>>>>> Stashed changes
         var btn_value=req.body.btn
         if(btn_value=="Edit")
         {
@@ -141,7 +187,19 @@ router.post("/chk_login",function(req,res)
    }
         })
     })
+<<<<<<< Updated upstream
  
+=======
+ router.get("/search_by_id",function(req,res){
+      var user = check_user(localStorage);
+     if(user){
+      res.render('search_by_id',{data:user,message:" "});
+     }
+     else{
+      res.render('login_page',{message:''});
+     }
+})
+>>>>>>> Stashed changes
 
  
 
