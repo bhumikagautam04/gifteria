@@ -53,6 +53,10 @@ else{
             
    
     });
+    router.get("/logout",function(req,res){
+    localStorage.clear();
+     res.redirect('/admin/login_page')
+})
 
 
 module.exports = router;
