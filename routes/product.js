@@ -8,7 +8,7 @@ const {check_user} = require('./checkuser');
 
 
 router.get('/product_interface', function(req,res,next){
-     var user = check_user(localStorage);
+     var user = check_user(req);
      if(user){
       res.render('product_interface',{data:user,message:" "});
      }
@@ -68,7 +68,7 @@ router.get('/fetch_all_category', function(req,res){
     })
     router.get('/fetch_all_products', function(req, res) {
 
-    var user = check_user(localStorage);
+    var user = check_user(req);
 
     if (!user) {
         return res.render('login_page', { message: '' });
@@ -97,7 +97,7 @@ router.get('/fetch_all_category', function(req,res){
     
      router.get('/edit_delete_view/:productid', function(req, res) {
 
-    var user = check_user(localStorage);
+    var user = check_user(req);
 
     if (!user) {
         return res.render('login_page', { message: '' });
@@ -181,7 +181,7 @@ router.get('/fetch_all_category', function(req,res){
         })
     })
      router.get("/search_by_id",function(req,res){
-        var user = check_user(localStorage);
+        var user = check_user(req);
      if(user){
       res.render('search_by_id',{data:user,message:" "});
      }

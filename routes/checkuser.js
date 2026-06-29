@@ -1,7 +1,12 @@
  
- function check_user(localStorage){
+ function check_user(req){
  try {
-    var data= JSON.parse(localStorage.getItem("ADMIN"));
+    var user= req && req.session ? req.session.user : undefined;
+    console.log('userrrrr:',user);
+    if (user == undefined){
+      return false;
+    }
+    var data =JSON.parse(user);
     if(data==null){
       return false
     }

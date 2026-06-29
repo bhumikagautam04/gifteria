@@ -8,7 +8,7 @@ const {check_user} = require('./checkuser');
 
 /* GET home page. */
 router.get('/dashboard', function(req, res, next) {
- var user = check_user(localStorage);
+ var user = check_user(req);
  if(user){
   res.render('dashboard',{data:user});
  }
@@ -19,7 +19,7 @@ router.get('/dashboard', function(req, res, next) {
 
 
 router.get('/login_page', function(req,res,next){
- var user = check_user(localStorage);
+ var user = check_user(req);
  if(user){
   res.render('dashboard',{data:user});
  }
@@ -28,33 +28,49 @@ router.get('/login_page', function(req,res,next){
  }
 });
 
-router.post("/chk_login",function(req,res)
-    {
-   pool.query("select * from admin where (emailid=? or mobileno=? )and password=?",[req.body.emailid,req.body.emailid,req.body.password],function(err,result){
-if(err)
-{
-  res.render('login_page',{message:'Server Error'})
-}
-else{
-  if(result.length==1)
-  {
+router.post("/chk_login", function(req, res) {
 
-    localStorage.setItem("ADMIN",JSON.stringify(result[0]))
-    res.render("dashboard",{data:result[0]})
+    pool.query(
+        "select * from admin where (emailid=? or mobileno=?) and password=?",
+        [req.body.emailid, req.body.emailid, req.body.password],
+        function(err, result) {
 
-    res.render("dashboard")
+            if (err) {
+                return res.render("login_page", {
+                    message: "Server Error"
+                });
+            }
 
-  }
-  else{
-    res.render('login_page',{message:"Invalid EmailID/Mobileno/Password"})
-  }
-}
-   })
+            if (result.length == 1) {
+
+                req.session.user = JSON.stringify(result[0]);
+
+                req.session.save(function(err) {
+
+                    if (err) {
+                        return res.render("login_page", {
+                            message: "Session Error"
+                        });
+                    }
+
+                    // Redirect to dashboard after successful login
+                    return res.redirect("/admin/dashboard");
+                });
+
+            } else {
+
+                return res.render("login_page", {
+                    message: "Invalid EmailID / Mobile No / Password"
+                });
+
+            }
+        }
+    );
+
+});
             
-   
-    });
     router.get("/logout",function(req,res){
-    localStorage.clear();
+    req.session.destroy();
      res.redirect('/admin/login_page')
 })
 
