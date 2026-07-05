@@ -67,12 +67,6 @@ CREATE TABLE product(
 INSERT INTO product
 (productid,categoryid,subcategoryid,productname,productrate,productoffer,stock,weight,productpicture)
 VALUES
-(1,1,101,'car',56,'6y','ef','gh',NULL),
-
-(2,2,105,'car',56,'79','vn','bhy',NULL),
-
-(3,2,105,'Barbie Dream House',40000,'10','40','1kg',NULL),
-
-(4,2,105,'Barbie Dream House',40000,'10','40','1kg',NULL),
-
-(5,1,107,'iPhone 15',80000,'15','50','171g',NULL);
+(1,	1,	107,	'iPhone17'	,80000,	10	,50	,171g,	13532706-ae2b-4881-9afe-257d8609b7bd.jpg);
+(2,	3,	116	,'Photo Frame' 	,500	,10	,40,	150g,	9d0ca3ec-93ee-4d25-bcb1-d6a64a04da33.jpg);
+(3,2,	112	,'Remote Control Car'	,700	,5,	20	,1kg,	f1c128e2-27a7-472d-8b77-59ebc388e7a2.jpg);

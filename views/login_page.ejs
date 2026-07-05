@@ -14,9 +14,9 @@
 <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
 <script src="/javascripts/gift_data.js"></script>
     </head>
-    <form action="/product/chk_login" method="post">
+    <form action="/admin/chk_login" method="post" >
     <div class = "maincontainer">
-<div class="box form-card3">
+<div class="box2 form-card3">
     <div class="container p-0">
     <div class="row">
         <div class="col-md-12">
@@ -40,20 +40,27 @@
         <%= message %>
       </div>
     <% } %>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label textstyle3">Email address</label>
-    <input type="email" class="form-control" id="emailid" name="emailid" aria-describedby="emailHelp" placeholder="EmailID" >
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label textstyle3">Password</label>
-    <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password">
-  </div>
-  <div class="mb-3 form-check">
+ <div class="row">
+    <div class="col-md-12" style="margin-top:10px";>
+     <div class="form-floating"> 
+        <input class="form-control" type="text" placeholder=" " name="emailid"  autocomplete="new-password"  style="border-radius:15px;"/>
+            <label for="productname">Email Address/Mobile Number</label>
+    </div>
+        </div>
+    </div>
+
+    <div class="row">
+    <div class="col-md-12" style="margin-top:10px">
+     <div class="form-floating"> 
+        <input class="form-control" type="password" placeholder=" " name="password"   autocomplete="new-password" style="border-radius:15px;"/>
+         <label for="productrate">Password</label>
+        </div>
+        </div>
+  <div class="mb-3 form-check" style="margin-top:20px;">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label textstyle3" for="exampleCheck1">Check me out</label>
   </div>
-<button type="submit" class="btn btn-login textstyle3" style="background-color: black;">
+<button type="submit" class="btn btn-login textstyle3" style="background-color: black;width:200px;margin-left: 320px;">
     🎁 Login
 </button>
 </form>
