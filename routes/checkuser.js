@@ -1,21 +1,17 @@
- 
- function check_user(req){
- try {
-    var user= req && req.session ? req.session.user : undefined;
-    console.log('userrrrr:',user);
-    if (user == undefined){
-      return false;
-    }
-    var data =JSON.parse(user);
-    if(data==null){
-      return false
-    }
-    else{
-    return data
-    }
-  }catch (e){
+ var jwt =require('jsonwebtoken');
 
-  return false
-  }
+
+ function verify_token(token){
+ if(!token){
+  return false;
+ }
+ try {
+  var user = jwt.verify(token, 'BHUMIKA');
+  console.log('user',user);
+  return user;
+
+ } catch (error) {
+  return false;
+ }
 }
-module.exports={check_user};
+module.exports = verify_token;

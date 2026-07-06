@@ -5,21 +5,23 @@ var upload=require('./multer');
 var {LocalStorage} =require('node-localstorage');
 var localStorage = new LocalStorage('./scratch');
 const {check_user} = require('./checkuser');
+var jwt =require('jsonwebtoken');
+var verify_token = require('./checkuser');
 
 /* GET home page. */
 router.get('/dashboard', function(req, res, next) {
- var user = check_user(req);
+ var user = verify_token(localStorage.getItem('token'));
  if(user){
   res.render('dashboard',{data:user});
  }
  else{
-  res.render('login_page');
+  res.render('login_page',{message:'Please login first'});
  }
 });
 
 
 router.get('/login_page', function(req,res,next){
- var user = check_user(req);
+ var user = verify_token(localStorage.getItem('token'));
  if(user){
   res.render('dashboard',{data:user});
  }
@@ -42,20 +44,10 @@ router.post("/chk_login", function(req, res) {
             }
 
             if (result.length == 1) {
-
-                req.session.user = JSON.stringify(result[0]);
-
-                req.session.save(function(err) {
-
-                    if (err) {
-                        return res.render("login_page", {
-                            message: "Session Error"
-                        });
-                    }
-
-                    // Redirect to dashboard after successful login
-                    return res.redirect("/admin/dashboard");
-                });
+            var token = jwt.sign(result[0], 'BHUMIKA', { expiresIn: '30m' });
+            localStorage.setItem('token', token);
+            console.log(token);
+            res.redirect('/admin/dashboard');
 
             } else {
 
@@ -70,7 +62,7 @@ router.post("/chk_login", function(req, res) {
 });
             
     router.get("/logout",function(req,res){
-    req.session.destroy();
+    localStorage.clear();
      res.redirect('/admin/login_page')
 })
 
