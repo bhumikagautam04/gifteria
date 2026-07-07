@@ -67,6 +67,24 @@ CREATE TABLE product(
 INSERT INTO product
 (productid,categoryid,subcategoryid,productname,productrate,productoffer,stock,weight,productpicture)
 VALUES
-(1,	1,	107,	'iPhone17'	,80000,	10	,50	,171g,	13532706-ae2b-4881-9afe-257d8609b7bd.jpg);
-(2,	3,	116	,'Photo Frame' 	,500	,10	,40,	150g,	9d0ca3ec-93ee-4d25-bcb1-d6a64a04da33.jpg);
-(3,2,	112	,'Remote Control Car'	,700	,5,	20	,1kg,	f1c128e2-27a7-472d-8b77-59ebc388e7a2.jpg);
+
+(1, 3, 117, 'couple Frame', 500, 20, 50, '170g', '046e68ec-3f50-4e16-bb25-6d888634f7f0.jpg'),
+
+(2, 2, 112, 'Remote Control Car', 4000, 15, 5, '1kg', '67972037-9b75-4334-b9b1-8df5555dbc07.jpg'),
+
+(3, 4, 120, 'Ganesh', 500, 30, 50, '175g', '3e052353-b7e2-4b04-bfd1-ae28d0a7b4f8.jpg');
+
+CREATE TABLE admin (
+    emailid VARCHAR(100) NOT NULL,
+    mobileno VARCHAR(10),
+    adminname VARCHAR(45),
+    password VARCHAR(45),
+    picture TEXT,
+
+    PRIMARY KEY (emailid, mobile_no),
+);
+
+INSERT INTO admin
+(emailid, mobileno, adminname, password, picture)
+VALUES
+('bhumikagautam751@gmail.com', '8817478472', 'Bhumika', '123', '1.png');
