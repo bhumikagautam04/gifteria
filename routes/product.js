@@ -127,10 +127,7 @@ router.get('/fetch_all_category', function(req,res){
 
 
    router.post('/product_edit_delete' , function(req,res){
-
-       router.post('/product_edit_delete' , function(req,res){
-
-        var btn_value=req.body.btn
+        var btn_value=req.body.btn;
         if(btn_value=="Edit")
         {
             pool.query("update products set categoryid=?, subcategoryid=?, productname=?, productrate=?, productoffer=?, stock=?, weight=? where productid=?", [req.body.categoryid, req.body.subcategoryid, req.body.productname, req.body.productrate, req.body.productoffer, req.body.productstock, req.body.productweight,  req.body.productid], function(err,result){ 
@@ -143,7 +140,7 @@ router.get('/fetch_all_category', function(req,res){
                 {
                     res.redirect('/product/fetch_all_products');
                 }
-            })
+            });
         }
         else{
             pool.query("delete from products where productid=?",[req.body.productid],function(err,result){
@@ -156,10 +153,9 @@ router.get('/fetch_all_category', function(req,res){
                 {
                     res.redirect('/product/fetch_all_products');
                 }
-            })
+            });
         }
-    })
-})
+    });
     router.get("/show_picture/:id/:name/:picture", function(req,res){
         res.render("show_picture_for_edit", { data: req.params })
     })
